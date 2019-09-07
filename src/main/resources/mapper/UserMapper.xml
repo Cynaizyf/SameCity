@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.samecity.dao.UserDao" >
+    <sql id="BASE_TABLE">
+    username
+    </sql>
+
+    <sql id="BASE_COLUMN">
+    userId,username,password,phone,email
+    </sql>
+
+    <!--查询全部信息-->
+    <select id="findAll" resultType="com.example.samecity.model.UserDomain">
+        select * from userinfo
+    </select>
+
+    <!--查询所有用户名-->
+    <select id="selectByLoginnameAndPassword" resultType="com.example.samecity.model.UserDomain">
+        select * from userinfo where username=#{username} and password=#{password}
+    </select>
+
+    <!--插入用户名密码-->
+    <insert id="insertUserPwd" parameterType="com.example.samecity.model.UserDomain">
+        insert into userinfo (username, password, phone, email)
+        values (#{username,jdbcType=VARCHAR},#{password,jdbcType=VARCHAR},#{phone,jdbcType=VARCHAR},#{email,jdbcType=VARCHAR})
+    </insert>
+</mapper>

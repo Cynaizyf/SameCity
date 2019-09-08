@@ -10,17 +10,21 @@
     </sql>
 
     <!--查询全部信息-->
-    <select id="findAll" resultType="com.example.samecity.model.UserDomain">
-        select * from userinfo
+    <select id="FindU" resultType="com.example.samecity.model.UserDomain">
+        SELECT username FROM userinfo WHERE username = username=#{username}
     </select>
 
-    <!--查询所有用户名-->
+    <!--查询所有 登录-->
     <select id="selectByLoginnameAndPassword" resultType="com.example.samecity.model.UserDomain">
         select * from userinfo where username=#{username} and password=#{password}
     </select>
 
+    <select id="count" resultType="int" parameterType="String">
+        select count(*) from userinfo where username=#{username}
+    </select>
+
     <!--插入用户名密码-->
-    <insert id="insertUserPwd" parameterType="com.example.samecity.model.UserDomain">
+    <insert id="addM" parameterType="com.example.samecity.model.UserDomain">
         insert into userinfo (username, password, phone, email)
         values (#{username,jdbcType=VARCHAR},#{password,jdbcType=VARCHAR},#{phone,jdbcType=VARCHAR},#{email,jdbcType=VARCHAR})
     </insert>

@@ -15,10 +15,11 @@ public class UserServiceImpl implements UserService {
 
 
     @Override
-    public UserDomain FindU(UserDomain userDomain) {
-        return userDao.FindU(userDomain.getUsername());
+    public UserDomain FindU(String username, String password) {
+        return userDao.FindU(username,password);
     }
 
+    //登录
     @Override
     public UserDomain login(String username, String password) {
         return userDao.selectByLoginnameAndPassword(username,password);
@@ -30,7 +31,12 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public int insertUserPwd(UserDomain userDomain) {
-        return userDao.insertUserPwd(userDomain);
+    public int addM(UserDomain userDomain) {
+        return userDao.addM(userDomain);
+    }
+
+    @Override
+    public int count(UserDomain userDomain) {
+        return userDao.count(userDomain);
     }
 }

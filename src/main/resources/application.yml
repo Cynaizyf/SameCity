@@ -1,6 +1,3 @@
-  #.yml的语法如下。
-  #！！！！！！！！！每一个冒号后面都有一个空格，别问为什么，语法就是这样！不然疯狂报错！切记。
-  #还有，比如下方jdbc:mysql://localhost:3306这些冒号后面不需要空格，加了会报错。
   server:
     port: 8080
     session-timeout: 30
@@ -14,9 +11,10 @@
       password: root
     mvc:
       view:
-        prefix: /templates/
-        suffix: .html
+        prefix: /WEB-INF/
+        suffix: .jsp
       static-path-pattern: /static/**
+
   mybatis:
     type-aliases-package: com.example.model
     mapper-locations: classpath:mapper/*.xml

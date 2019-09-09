@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpSession;
-import java.util.List;
 
 @Controller
 public class UserController {
@@ -56,5 +55,14 @@ public class UserController {
         }else {
             return null;
         }
+    }
+
+    /**
+     * 页面跳转
+     * @return
+     */
+    @RequestMapping("/tiao")
+    public String tito(){
+        return "success";
     }
 }

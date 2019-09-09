@@ -20,7 +20,7 @@ function requestJson(){
                     }
                     else{
                         alert("登录成功");
-                        window.location.href ="success";
+                        window.location.href ="/tiao";
                     }
                 }
             });

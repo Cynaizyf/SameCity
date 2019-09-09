@@ -1,11 +1,14 @@
 <!DOCTYPE html>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+         pageEncoding="UTF-8"%>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>同城</title>
-    <link rel="stylesheet" href="../static/css/style.css">
+    <link rel="stylesheet" href="../../resources/static/css/style.css">
     <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
-    <script type="text/javascript" src="../static/js/login.js"></script>
+    <script type="text/javascript" src="../../resources/static/js/login.js"></script>
 </head>
 <body>
 <!--背景-->

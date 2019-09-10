@@ -2,12 +2,17 @@ package com.example.samecity.controller;
 
 import com.example.samecity.model.UserDomain;
 import com.example.samecity.service.UserService;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpSession;
+import java.util.List;
 
 @Controller
 public class UserController {
@@ -58,11 +63,27 @@ public class UserController {
     }
 
     /**
+     * 用户查询
      * 页面跳转
+     * @param model
      * @return
      */
     @RequestMapping("/tiao")
-    public String tito(){
-        return "success";
+    public String findU(Model model){
+        List<UserDomain> list = userServcie.findU();
+        System.out.println(list);
+        model.addAttribute("userList",list);
+        return "userlist";
+    }
+
+    @RequestMapping("/finds")
+    @ResponseBody
+    public List<UserDomain> findsUser(@RequestParam(value="username")String username, HttpSession session, @RequestParam(value="pageNo",required=false,defaultValue="1")int pageNo, @RequestParam(value="pageSize",required=false,defaultValue="13")int pageSize){
+        System.out.println(username);
+        PageHelper.startPage(pageNo, pageSize);
+        List<UserDomain> list=userServcie.findUser(username);
+        PageInfo<UserDomain> page=new PageInfo<UserDomain>(list);
+        session.setAttribute("users", list);
+        return  list;
     }
 }

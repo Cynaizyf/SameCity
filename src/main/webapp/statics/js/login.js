@@ -15,7 +15,7 @@ function requestJson(){
                 async: true,
                 data:{username:name,password:pwd},
                 success:function(jsonStr){
-                    if(jsonStr.length === 0 || jsonStr === null){
+                    if(jsonStr.length === 0){
                         alert("没有这个用户！");
                     }
                     else{
@@ -87,5 +87,32 @@ function registeredJson() {
                 }
             }
         }
+    }
+}
+
+//模糊查询
+function finds() {
+    var username =$("#username").val();
+    if(username==""){
+        alert("登录名不能为空！");
+        return false;
+    }
+    else
+    {
+        $.ajax({
+            type:'post',
+            url:'finds',
+            dataType:"json",//注意使用的是打他dataType，而不是Content-Type
+            async: true,
+            data:{username:username},
+            success:function(data){
+                if(data==null){
+                    alert("没有这个用户！")
+                }
+                else{
+                    window.location.href ="showuser";
+                }
+            }
+        });
     }
 }

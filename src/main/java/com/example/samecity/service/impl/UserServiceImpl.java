@@ -13,12 +13,6 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private UserDao userDao;
 
-
-    @Override
-    public UserDomain FindU(String username, String password) {
-        return userDao.FindU(username,password);
-    }
-
     //登录
     @Override
     public UserDomain login(String username, String password) {
@@ -26,8 +20,8 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public List<UserDomain> findAllUserName() {
-        return userDao.findAllUserName();
+    public List<UserDomain> findU() {
+        return userDao.findU();
     }
 
     @Override
@@ -38,5 +32,10 @@ public class UserServiceImpl implements UserService {
     @Override
     public int count(UserDomain userDomain) {
         return userDao.count(userDomain);
+    }
+
+    @Override
+    public List<UserDomain> findUser(String str) {
+        return userDao.looks(str);
     }
 }

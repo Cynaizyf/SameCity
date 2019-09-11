@@ -15,7 +15,7 @@
     <form>
         <h1 align="center">用户管理</h1>
         <tr>
-            <td><input name="queryone" type="text" id="queryone" class="in-1" placeholder="输入文字搜索"></td>
+            <td><input name="querying" type="text" id="querying" class="in-1" placeholder="输入文字搜索"></td>
             <td><input type="button" value="查询" onclick="finds()"/></td>
         </tr>
     </form>
@@ -36,8 +36,8 @@
             <td>${user.phone}</td>
             <td>${user.email}</td>
             <td>
-                <a href="">编辑</a>
-                <a href="">删除</a>
+                <a href="editgo?ids=${user.ids}">编辑</a>
+                <a href="delete?ids=${user.ids}">删除</a>
             </td>
         </tr>
     </c:forEach>

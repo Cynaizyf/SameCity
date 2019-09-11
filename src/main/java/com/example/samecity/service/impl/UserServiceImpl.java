@@ -20,6 +20,11 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public UserDomain get(int ids) {
+        return userDao.getM(ids);
+    }
+
+    @Override
     public List<UserDomain> findU() {
         return userDao.findU();
     }
@@ -35,7 +40,17 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public List<UserDomain> findUser(String str) {
-        return userDao.looks(str);
+    public void delete(int ids) {
+        userDao.deleteM(ids);
+    }
+
+    @Override
+    public int edit(UserDomain userDomain) {
+        return userDao.editM(userDomain);
+    }
+
+    @Override
+    public List<UserDomain> findUser(String username) {
+        return userDao.findUser(username);
     }
 }

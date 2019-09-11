@@ -14,6 +14,9 @@ public interface UserDao {
     public UserDomain selectByLoginnameAndPassword(@Param("username")String username, @Param("password") String password);
     UserDomain login(String username,String password);
 
+    // 查询单条
+    public UserDomain getM(int ids); // 查询单条
+
     //查询所有用户名
     List<UserDomain> findU();
 
@@ -23,7 +26,13 @@ public interface UserDao {
     //查询数量
     int count(UserDomain userDomain);
 
-    //模糊查询
-    public List<UserDomain> looks(String username);
+    //删除
+    public void deleteM(int ids);
 
+    // 修改
+    public int editM(UserDomain userDomain);
+
+
+    //模糊查询
+    List<UserDomain> findUser(@Param("username")String username);
 }

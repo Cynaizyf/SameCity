@@ -6,6 +6,11 @@
         SELECT * FROM userinfo
     </select>
 
+    <!--查询单条-->
+    <select id="getM" parameterType="int" resultType="com.example.samecity.model.UserDomain">
+		select * from userinfo where ids =#{ids}
+	</select>
+
     <!--查询所有 登录-->
     <select id="selectByLoginnameAndPassword" resultType="com.example.samecity.model.UserDomain">
         select * from userinfo where username=#{username} and password=#{password}
@@ -22,8 +27,24 @@
         values (#{username,jdbcType=VARCHAR},#{password,jdbcType=VARCHAR},#{phone,jdbcType=VARCHAR},#{email,jdbcType=VARCHAR})
     </insert>
 
+    <!--删除-->
+    <delete id="deleteM" parameterType="com.example.samecity.model.UserDomain">
+		delete from userinfo where ids= #{ids}
+	</delete>
+
+    <!--修改-->
+    <update id="editM" parameterType="com.example.samecity.model.UserDomain">
+		update userinfo set username=#{username},password=#{password},phone=#{phone},email=#{email} where ids= #{ids}
+	</update>
+
     <!--模糊查询-->
-    <select id="looks" resultType="com.example.samecity.model.UserDomain">
-        select * from userinfo where username like '%${_parameter}%'
+    <select id="findUser" resultType="com.example.samecity.model.UserDomain"  parameterType="com.example.samecity.model.UserDomain">
+        select * from userinfo
+        <where>
+            <if test="username != null and username != ''">
+                AND username LIKE  CONCAT(CONCAT('%',#{username},'%'))
+            </if>
+        </where>
+        ORDER BY ids
     </select>
 </mapper>

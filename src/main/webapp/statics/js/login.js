@@ -92,27 +92,26 @@ function registeredJson() {
 
 //模糊查询
 function finds() {
-    var username =$("#username").val();
-    if(username==""){
+    var querying = $("#querying").val();
+    if(!querying){
         alert("登录名不能为空！");
         return false;
     }
     else
     {
-        $.ajax({
-            type:'post',
-            url:'finds',
-            dataType:"json",//注意使用的是打他dataType，而不是Content-Type
-            async: true,
-            data:{username:username},
-            success:function(data){
-                if(data==null){
-                    alert("没有这个用户！")
+        $.post(
+            "/findsur",
+            {username: querying},
+            function (data) {
+                if (data !== "success"){
+                    alert("没有该用户!");
+                    window.location.href = '#';
+                } else {
+                    alert("查询成功！");
+                    window.location.href = '/findsur';
                 }
-                else{
-                    window.location.href ="showuser";
-                }
-            }
-        });
+            },
+            "text"
+        );
     }
 }

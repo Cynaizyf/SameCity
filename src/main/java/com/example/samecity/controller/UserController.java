@@ -2,14 +2,12 @@ package com.example.samecity.controller;
 
 import com.example.samecity.model.UserDomain;
 import com.example.samecity.service.UserService;
-import com.github.pagehelper.PageHelper;
-import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpSession;
 import java.util.List;
@@ -76,14 +74,54 @@ public class UserController {
         return "userlist";
     }
 
-    @RequestMapping("/finds")
+    /**
+     * 删除
+     * @param ids
+     * @return
+     */
+    @RequestMapping("delete")
+    public ModelAndView delete(int ids) {
+        userServcie.delete(ids);
+        ModelAndView mav = new ModelAndView("redirect:/tiao");
+        return mav;
+    }
+
+    // 单条明细修改跳转到修改页面
+    @RequestMapping("editgo")
+    public ModelAndView editgo(int ids) {
+        UserDomain c = userServcie.get(ids);
+        ModelAndView mav = new ModelAndView("edit");
+        mav.addObject("c", c);
+        return mav;
+    }
+
+    /**
+     * 修改
+     * @param userDomain
+     * @return
+     */
+    @RequestMapping("edit")
+    public ModelAndView edit(UserDomain userDomain) {
+        userServcie.edit(userDomain);
+        ModelAndView mav = new ModelAndView("redirect:/tiao");
+        return mav;
+    }
+
+    /**
+     * 模糊查询
+     * @param username
+     * @return
+     */
+    @RequestMapping("/findsur")
     @ResponseBody
-    public List<UserDomain> findsUser(@RequestParam(value="username")String username, HttpSession session, @RequestParam(value="pageNo",required=false,defaultValue="1")int pageNo, @RequestParam(value="pageSize",required=false,defaultValue="13")int pageSize){
-        System.out.println(username);
-        PageHelper.startPage(pageNo, pageSize);
-        List<UserDomain> list=userServcie.findUser(username);
-        PageInfo<UserDomain> page=new PageInfo<UserDomain>(list);
-        session.setAttribute("users", list);
-        return  list;
+    public String findUser(String username){
+        List<UserDomain> users = userServcie.findUser(username);
+        System.out.println(users);
+        if (users != null){
+            System.out.println(users);
+            return "success";
+        }else {
+            return null;
+        }
     }
 }

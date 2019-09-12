@@ -45,7 +45,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public int edit(UserDomain userDomain) {
+    public int editM(UserDomain userDomain) {
         return userDao.editM(userDomain);
     }
 

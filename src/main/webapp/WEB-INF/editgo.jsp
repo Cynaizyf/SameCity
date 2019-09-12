@@ -17,6 +17,7 @@
             <tr>
                 <td>姓名</td>
                 <td>
+                    <input type="hidden" name="ids" value="${c.ids}"/>
                     <input type="text" name="username" value="${c.username }" />
                 </td>
             </tr>
@@ -38,10 +39,9 @@
                     <input type="text" name="email" value="${c.email }"/>
                 </td>
             </tr>
-
             <tr>
                 <td>
-                    <a href="${pageContext.request.contextPath}/ssmcrud/fanhui">返回</a>
+                    <a href="${pageContext.request.contextPath}/tiao">返回</a>
                 </td>
                 <td>
                     <input type="submit" value="提交" />

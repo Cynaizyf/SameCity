@@ -90,7 +90,7 @@ public class UserController {
     @RequestMapping("editgo")
     public ModelAndView editgo(int ids) {
         UserDomain c = userServcie.get(ids);
-        ModelAndView mav = new ModelAndView("edit");
+        ModelAndView mav = new ModelAndView("editgo");
         mav.addObject("c", c);
         return mav;
     }
@@ -102,7 +102,8 @@ public class UserController {
      */
     @RequestMapping("edit")
     public ModelAndView edit(UserDomain userDomain) {
-        userServcie.edit(userDomain);
+        int edit = userServcie.editM(userDomain);
+        System.out.println(edit);
         ModelAndView mav = new ModelAndView("redirect:/tiao");
         return mav;
     }
@@ -114,13 +115,14 @@ public class UserController {
      */
     @RequestMapping("/findsur")
     @ResponseBody
-    public String findUser(String username){
-        List<UserDomain> users = userServcie.findUser(username);
-        System.out.println(users);
-        if (users != null){
-            System.out.println(users);
-            return "success";
+    public String findUser(Model model,String username){
+        List<UserDomain> list = userServcie.findUser(username);
+        if (list.size() != 0){
+            System.out.println(list);
+            model.addAttribute("userList",list);
+            return "userlist";
         }else {
+            System.out.println("执行null");
             return null;
         }
     }

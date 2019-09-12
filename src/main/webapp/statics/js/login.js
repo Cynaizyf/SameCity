@@ -1,6 +1,6 @@
 /*登录*/
 function requestJson(){
-    var name =$("#username").val();//#是id选择器
+    var name =$("#username").val();
     var pwd =$("#password").val();
     if(name==="" || null == name){
         alert("用户名不能为空！");
@@ -30,7 +30,7 @@ function requestJson(){
 
 /*注册*/
 function registeredJson() {
-    var rename = $("#user_name").val();//#是id选择器
+    var rename = $("#user_name").val();
     var raped = $("#user_password").val();
     var rapids = $("#user_password_one").val();
     var repine = $("#user_phone").val();
@@ -100,18 +100,17 @@ function finds() {
     else
     {
         $.post(
-            "/findsur",
-            {username: querying},
-            function (data) {
-                if (data !== "success"){
-                    alert("没有该用户!");
-                    window.location.href = '#';
-                } else {
-                    alert("查询成功！");
-                    window.location.href = '/findsur';
+            'findsur',
+            {username:querying},
+            function(jsonStr){
+                if(jsonStr.length === 0){
+                    alert("没有这个用户！");
+                }
+                else{
+                    alert("查询成功");
                 }
             },
-            "text"
-        );
+         "text"
+        )
     }
 }

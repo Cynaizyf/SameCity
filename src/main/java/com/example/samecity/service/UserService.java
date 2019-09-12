@@ -26,7 +26,7 @@ public interface UserService {
     void delete(int ids);
 
     // 修改
-    int edit(UserDomain userDomain);
+    int editM(UserDomain userDomain);
 
     //模糊查询
     List<UserDomain> findUser(@Param("username")String username);
